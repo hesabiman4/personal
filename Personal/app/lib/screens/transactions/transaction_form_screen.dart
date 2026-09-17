@@ -46,8 +46,8 @@ class _TransactionFormScreenState extends State<TransactionFormScreen> {
         _selectedClientId = t.clientId;
         _selectedDate = t.occurredOn;
         // Parse time if available
-        if (t.occurredTime != null && t.occurredTime!.isNotEmpty) {
-          final parts = t.occurredTime!.split(':');
+        if (t.occurredTime.isNotEmpty) {
+          final parts = t.occurredTime.split(':');
           if (parts.length == 2) {
             _selectedTime = TimeOfDay(
               hour: int.parse(parts[0]),

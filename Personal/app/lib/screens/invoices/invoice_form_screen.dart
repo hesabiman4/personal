@@ -209,6 +209,7 @@ class _InvoiceFormScreenState extends State<InvoiceFormScreen> {
                     const SizedBox(height: 8),
                     TextFormField(
                       controller: _amountController,
+            initialValue: _amountController.text,
                       decoration: const InputDecoration(
                         hintText: '0.00',
                         border: OutlineInputBorder(),

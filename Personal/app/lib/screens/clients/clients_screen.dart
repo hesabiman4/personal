@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../providers/finance_provider.dart';
 import '../../models/client.dart';
-import '../../utils/formatters.dart';
 import 'client_details_screen.dart';
 
 /// Clients list screen with search and filters

@@ -258,7 +258,7 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> with SingleTi
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Due: ${Formatters.formatDate(invoice.dueOn)}'),
+                Text('Due: ${invoice.dueOn != null ? Formatters.formatDate(invoice.dueOn!) : 'N/A'}'),
                 Text(
                   'Amount: ${Formatters.formatCurrency(invoice.amountTotalMinor, 'USD')}',
                   style: const TextStyle(fontWeight: FontWeight.bold),
