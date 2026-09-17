@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../providers/finance_provider.dart';
 import '../../providers/settings_provider.dart';
+import '../../utils/constants.dart';
 import '../../utils/formatters.dart';
 import '../transactions/transaction_form_screen.dart';
 import '../clients/client_details_screen.dart';

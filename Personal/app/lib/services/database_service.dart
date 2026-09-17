@@ -9,7 +9,7 @@ import '../models/account.dart';
 import '../models/category.dart';
 import '../models/client.dart';
 import '../models/receivable.dart';
-import '../models/transaction.dart';
+import '../models/transaction.dart' as app_models;
 
 /// Database service for encrypted SQLite operations
 class DatabaseService {
@@ -348,13 +348,13 @@ class DatabaseService {
   // ==================== Transaction Operations ====================
 
   /// Get all transactions
-  Future<List<Transaction>> getAllTransactions() async {
+  Future<List<app_models.Transaction>> getAllTransactions() async {
     final maps = await database.query('transactions', orderBy: 'occurred_on DESC, occurred_time DESC');
-    return maps.map((map) => Transaction.fromMap(map)).toList();
+    return maps.map((map) => app_models.Transaction.fromMap(map)).toList();
   }
 
   /// Get transactions with filters
-  Future<List<Transaction>> getTransactions({
+  Future<List<app_models.Transaction>> getTransactions({
     String? type,
     String? accountId,
     String? categoryId,
@@ -399,25 +399,25 @@ class DatabaseService {
       orderBy: 'occurred_on DESC, occurred_time DESC',
     );
 
-    return maps.map((map) => Transaction.fromMap(map)).toList();
+    return maps.map((map) => app_models.Transaction.fromMap(map)).toList();
   }
 
   /// Get transaction by ID
-  Future<Transaction?> getTransactionById(String id) async {
+  Future<app_models.Transaction?> getTransactionById(String id) async {
     final maps = await database.query('transactions', where: 'id = ?', whereArgs: [id]);
     if (maps.isEmpty) return null;
-    return Transaction.fromMap(maps.first);
+    return app_models.Transaction.fromMap(maps.first);
   }
 
   /// Insert transaction
-  Future<String> insertTransaction(Transaction transaction) async {
+  Future<String> insertTransaction(app_models.Transaction transaction) async {
     final id = uuid.v4();
     await database.insert('transactions', transaction.copyWith(id: id).toMap());
     return id;
   }
 
   /// Update transaction
-  Future<void> updateTransaction(Transaction transaction) async {
+  Future<void> updateTransaction(app_models.Transaction transaction) async {
     await database.update(
       'transactions',
       transaction.copyWith(updatedAt: DateTime.now()).toMap(),
@@ -501,13 +501,13 @@ class DatabaseService {
   }
 
   /// Get recent transactions (limit)
-  Future<List<Transaction>> getRecentTransactions({int limit = 5}) async {
+  Future<List<app_models.Transaction>> getRecentTransactions({int limit = 5}) async {
     final maps = await database.query(
       'transactions',
       orderBy: 'occurred_on DESC, occurred_time DESC',
       limit: limit,
     );
-    return maps.map((map) => Transaction.fromMap(map)).toList();
+    return maps.map((map) => app_models.Transaction.fromMap(map)).toList();
   }
 
   /// Get outstanding clients with balances

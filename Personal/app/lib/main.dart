@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'models/transaction.dart';
 import 'providers/finance_provider.dart';
 import 'providers/settings_provider.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/transactions/transactions_screen.dart';
+import 'screens/transactions/transaction_form_screen.dart';
 import 'screens/clients/clients_screen.dart';
 import 'screens/invoices/invoices_screen.dart';
 import 'screens/reports/reports_screen.dart';
 import 'screens/settings/settings_screen.dart';
+import 'services/database_service.dart';
 import 'utils/constants.dart';
 
 void main() async {
@@ -56,12 +59,12 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _currentIndex = 0;
   
-  final List<Widget> _screens = [
-    const HomeScreen(),
-    const TransactionsScreen(),
-    const TransactionFormScreen(type: TransactionType.income), // Will be handled specially
-    const ReportsScreen(),
-    const SettingsScreen(),
+  // Screens list (not directly used but kept for reference)
+  static const List<Widget> screens = [
+    HomeScreen(),
+    TransactionsScreen(),
+    ReportsScreen(),
+    SettingsScreen(),
   ];
 
   @override

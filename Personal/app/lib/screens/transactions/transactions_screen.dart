@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/transaction.dart';
 import '../../providers/finance_provider.dart';
+import '../../utils/constants.dart';
 import '../../utils/formatters.dart';
 import 'transaction_form_screen.dart';
 
