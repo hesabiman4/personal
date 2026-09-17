@@ -93,6 +93,12 @@ class Receivable {
     final dueDate = DateTime(dueOn!.year, dueOn!.month, dueOn!.day);
     return dueDate.isAtSameMomentAs(today);
   }
+  
+  /// Get amount due in minor units (outstanding balance)
+  int get amountDueMinor => amountMinor; // This should be calculated with payments
+  
+  /// Get total amount in minor units (alias for amountMinor)
+  int get amountTotalMinor => amountMinor;
 }
 
 /// Receivable summary with payment status

@@ -95,4 +95,20 @@ class Formatters {
       return formatDate(date);
     }
   }
+  
+  /// Convert amount in minor units to decimal string for input fields
+  static String amountToDecimalString(int amountMinor) {
+    final amount = amountMinor / 100.0;
+    return amount.toStringAsFixed(2);
+  }
+  
+  /// Convert decimal string to amount in minor units
+  static int decimalStringToAmount(String decimalString) {
+    final cleaned = decimalString.replaceAll(RegExp(r'[^\\d.-]'), '');
+    if (cleaned.isEmpty || cleaned == '-') {
+      return 0;
+    }
+    final value = double.parse(cleaned);
+    return (value * 100).round();
+  }
 }
