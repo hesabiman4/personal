@@ -1,0 +1,61 @@
+name: personal_income_tracker
+description: A personal income and expense tracker for freelancers and small business owners.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  provider: ^6.0.5
+  
+  # Database - Encrypted SQLite
+  sqflite_sqlcipher: ^2.3.0
+  sqflite_common_ffi: ^2.3.0
+  
+  # Secure Storage for DB key
+  flutter_secure_storage: ^9.0.0
+  
+  # Preferences for UI settings
+  shared_preferences: ^2.2.2
+  
+  # Internationalization, dates, numbers
+  intl: ^0.18.1
+  
+  # UUID generation
+  uuid: ^4.2.1
+  
+  # File paths for export
+  path_provider: ^2.1.1
+  
+  # Sharing CSV and reminders
+  share_plus: ^7.2.1
+  
+  # Path utilities
+  path: ^1.8.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+
+  assets:
+    - assets/fonts/
