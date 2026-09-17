@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/finance_provider.dart';
+import '../../models/transaction.dart';
 import '../../utils/formatters.dart';
 
 /// Reports screen with income vs expense charts
@@ -198,7 +199,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
         child: Row(
           children: [
             CircleAvatar(
-              backgroundColor: color.withOpacity(0.1),
+              backgroundColor: color.withValues(alpha: 0.1),
               child: Icon(icon, color: color),
             ),
             const SizedBox(width: 16),

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 /// Application-wide constants
 class AppConstants {
   static const String appName = 'Personal Income Tracker';

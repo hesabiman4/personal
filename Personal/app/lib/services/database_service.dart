@@ -1,4 +1,5 @@
 import 'package:sqflite_sqlcipher/sqflite_sqlcipher.dart';
+import 'package:sqflite_common/sqlite_api.dart' show Transaction;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
@@ -345,16 +346,16 @@ class DatabaseService {
     await database.delete('receivables', where: 'id = ?', whereArgs: [id]);
   }
 
-  // ==================== Transaction Operations ====================
+  // ==================== app_models.Transaction Operations ====================
 
   /// Get all transactions
-  Future<List<app_models.Transaction>> getAllTransactions() async {
+  Future<List<app_models.app_models.Transaction>> getAllTransactions() async {
     final maps = await database.query('transactions', orderBy: 'occurred_on DESC, occurred_time DESC');
-    return maps.map((map) => app_models.Transaction.fromMap(map)).toList();
+    return maps.map((map) => app_models.app_models.Transaction.fromMap(map)).toList();
   }
 
   /// Get transactions with filters
-  Future<List<app_models.Transaction>> getTransactions({
+  Future<List<app_models.app_models.Transaction>> getTransactions({
     String? type,
     String? accountId,
     String? categoryId,
@@ -399,25 +400,25 @@ class DatabaseService {
       orderBy: 'occurred_on DESC, occurred_time DESC',
     );
 
-    return maps.map((map) => app_models.Transaction.fromMap(map)).toList();
+    return maps.map((map) => app_models.app_models.Transaction.fromMap(map)).toList();
   }
 
   /// Get transaction by ID
-  Future<app_models.Transaction?> getTransactionById(String id) async {
+  Future<app_models.app_models.Transaction?> getTransactionById(String id) async {
     final maps = await database.query('transactions', where: 'id = ?', whereArgs: [id]);
     if (maps.isEmpty) return null;
-    return app_models.Transaction.fromMap(maps.first);
+    return app_models.app_models.Transaction.fromMap(maps.first);
   }
 
   /// Insert transaction
-  Future<String> insertTransaction(app_models.Transaction transaction) async {
+  Future<String> insertTransaction(app_models.app_models.Transaction transaction) async {
     final id = uuid.v4();
     await database.insert('transactions', transaction.copyWith(id: id).toMap());
     return id;
   }
 
   /// Update transaction
-  Future<void> updateTransaction(app_models.Transaction transaction) async {
+  Future<void> updateTransaction(app_models.app_models.Transaction transaction) async {
     await database.update(
       'transactions',
       transaction.copyWith(updatedAt: DateTime.now()).toMap(),
@@ -501,13 +502,13 @@ class DatabaseService {
   }
 
   /// Get recent transactions (limit)
-  Future<List<app_models.Transaction>> getRecentTransactions({int limit = 5}) async {
+  Future<List<app_models.app_models.Transaction>> getRecentTransactions({int limit = 5}) async {
     final maps = await database.query(
       'transactions',
       orderBy: 'occurred_on DESC, occurred_time DESC',
       limit: limit,
     );
-    return maps.map((map) => app_models.Transaction.fromMap(map)).toList();
+    return maps.map((map) => app_models.app_models.Transaction.fromMap(map)).toList();
   }
 
   /// Get outstanding clients with balances

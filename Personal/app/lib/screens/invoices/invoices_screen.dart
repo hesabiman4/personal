@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../providers/finance_provider.dart';
 import '../../models/receivable.dart';
-import '../../models/client.dart';
 import '../../utils/formatters.dart';
 import 'invoice_form_screen.dart';
 
